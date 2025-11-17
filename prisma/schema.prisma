@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model HostingService {
+  id             String   @id @default(uuid())
+  name           String
+  slug           String   @unique
+  description    String?
+  features       Json?
+  pricing        String?
+  affiliateLink  String?
+  cjAdvertiserId String?
+  lastUpdated    DateTime @default(now()) @updatedAt
+  reviews        Review[]
+  metrics        ComparisonMetric[]
+
+  @@map("hosting_services")
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  serviceId String
+  content   String
+  rating    Float
+  author    String?
+  createdAt DateTime @default(now())
+  service   HostingService @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@map("reviews")
+}
+
+model ComparisonMetric {
+  id         String  @id @default(uuid())
+  serviceId  String
+  metricName String
+  value      String
+  source     String?
+  service    HostingService @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+
+  @@map("comparison_metrics")
+}
+

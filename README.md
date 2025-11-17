@@ -34,3 +34,32 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Syncing with Antares
+
+This repository is synchronized with [Antares](https://github.com/ShowingCloud/Antares), a project on automated content generation with CJ affiliations.
+
+### Quick Sync
+
+```bash
+npm run sync:antares
+```
+
+### Manual Sync
+
+```bash
+# Fetch latest changes
+git fetch upstream
+
+# Merge changes
+git merge upstream/main --no-edit
+
+# Push to your repository
+git push origin main
+```
+
+For detailed sync instructions, see [docs/SYNC_WITH_ANTARES.md](docs/SYNC_WITH_ANTARES.md).
+
+### Automatic Sync
+
+A GitHub Actions workflow automatically syncs with Antares daily at 2 AM UTC. You can also trigger it manually from the Actions tab.

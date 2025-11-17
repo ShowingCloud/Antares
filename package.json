@@ -6,12 +6,24 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "cron:update": "tsx scripts/cron.ts update-services",
+    "cron:scrape": "tsx scripts/cron.ts scrape-reviews",
+    "cron:ai": "tsx scripts/cron.ts generate-ai-reviews",
+    "cron:start": "tsx lib/cron/node-cron-runner.ts",
+    "sync:antares": "git fetch upstream && git merge upstream/main --no-edit"
   },
   "dependencies": {
+    "@prisma/client": "^6.19.0",
+    "axios": "^1.13.2",
+    "cheerio": "^1.1.2",
+    "date-fns": "^4.1.0",
     "next": "16.0.3",
+    "openai": "^6.9.0",
+    "prisma": "^6.19.0",
     "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react-dom": "19.2.0",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

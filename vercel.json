@@ -1,0 +1,17 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/vercel?job=update-services",
+      "schedule": "0 */6 * * *"
+    },
+    {
+      "path": "/api/cron/vercel?job=scrape-reviews",
+      "schedule": "0 */12 * * *"
+    },
+    {
+      "path": "/api/cron/vercel?job=generate-ai-reviews",
+      "schedule": "0 2 * * *"
+    }
+  ]
+}
+
