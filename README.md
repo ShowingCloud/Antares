@@ -63,3 +63,47 @@ For detailed sync instructions, see [docs/SYNC_WITH_ANTARES.md](docs/SYNC_WITH_A
 ### Automatic Sync
 
 A GitHub Actions workflow automatically syncs with Antares daily at 2 AM UTC. You can also trigger it manually from the Actions tab.
+
+## GPG Key Setup
+
+To sign your commits with a GPG key on GitHub:
+
+### Quick Setup
+
+Run the setup script:
+```powershell
+.\scripts\setup-gpg-simple.ps1
+```
+
+### Manual Setup
+
+1. **Install Gpg4win** (if not installed):
+   - Download from: https://www.gpg4win.org/
+   - Install and restart your terminal
+
+2. **Generate a GPG key:**
+   ```powershell
+   gpg --full-generate-key
+   ```
+
+3. **Get your key ID:**
+   ```powershell
+   gpg --list-secret-keys --keyid-format=long
+   ```
+
+4. **Export your public key:**
+   ```powershell
+   gpg --armor --export YOUR_KEY_ID
+   ```
+
+5. **Add to GitHub:**
+   - Go to: https://github.com/settings/gpg/new
+   - Paste your public key
+
+6. **Configure Git:**
+   ```powershell
+   git config --global user.signingkey YOUR_KEY_ID
+   git config --global commit.gpgsign true
+   ```
+
+For detailed instructions, see [docs/GPG_SETUP.md](docs/GPG_SETUP.md).
